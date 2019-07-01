@@ -7,7 +7,7 @@ After exporting an H2O.ai Driverless AI pipeline as a _mojo_ package, you will h
 + run_example.sh
 + example.csv
 
-(there may be others - not needed for the cloud foundry deployment)
+(there may be others - not needed for this cloud foundry deployment)
 
 You will need to create a _license.sig_ file with your key to allow the pipeline to be authorised.
 
@@ -31,22 +31,25 @@ ibmcloud login
 ibmcloud target --cf
 ```
 
-Once logged in and targetted, you should be able to "push" the package to the cloud :
+Once logged in and targeted, you should be able to "push" the package to the cloud; pick a name for your application (not a fully-qualified hostname, just the name for app), and run the following command from within the project directory:
 ```
 ibmcloud cf push << your-app-name-here >> -m 512m -p . -c "wlp/usr/servers/defaultServer/h2o_startup.sh"
 ```
-*Note:* if you are using IBM Cloud with a Lite account, your maximum available runtime memory is 256MB; try changing the `-m 512m` for `-m 256m` if you get a memory size error when running the _push_ command.
+*Note:* if you are using IBM Cloud with a Lite account, your maximum available runtime memory is 256MB; try changing the `-m 512m` for `-m 256m` if you get a memory size error when running the _push_ command. Also - by default, the _push_ command will also start your application - if you have other applications running (i.e.  using runtime memory), there needs to be sufficient free memory for the deployment to work (you may need to stop one or more running apps to liberate memory).
 
 The output from this command will include the hostname where your application is running:
 
 + << your-app-name-here >>[.{region}].mybluemix.net
-This makes use of the default packaging and runtime instantiation for the IBM Liberty java runtime.
+
+This deployment makes use of the default packaging and runtime instantiation for the IBM Liberty java runtime, so if you look in your IBM Cloud console, you will see a new Java Liberty application listed.
 
 To run the scoring example, run the `/h2o_run_example.cgi`.
 
 To run as a scoring service, POST `/h2o_mojo.cgi` form (or equivalent body) with all the feature/value pairs needed for your model.
 
 Note that the scoring times can be wildly unpredictable, as the Cloud Foundry runtime services are prioritised for interactive- over CPU-intensive workloads.
+
+*Note:* once you have run the scoring, or demo, remember to shutdown the application, or it will consume your runtime memory allocation unnecessarily.
 
 `YMMV/TANSTAAFL`
 
