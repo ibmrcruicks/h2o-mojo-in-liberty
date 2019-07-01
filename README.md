@@ -37,3 +37,13 @@ This makes use of the default packaging and runtime instantiation for the IBM Li
 To run the scoring example, run the `/h2o_run_example.cgi`.
 
 To run as a scoring service, POST `/h2o_mojo.cgi` form (or equivalent body) with all the feature/value pairs needed for your model.
+
+Note that the scoring times can be wildly unpredictable, as the Cloud Foundry runtime services are prioritised for interactive- over CPU-intensive workloads.
+
+`YMMV`
+
+# What's happening?
+
+The cloud foundry buildpack process makes extensive use of Ruby, regardless of the actual runtime -- the libraries installed are sufficient to support a simple CGI server.
+
+The _server.xml_ is used to trick the runtime setup into using the Liberty environment rather than a Ruby environment; the process doesn't actually create a Liberty server application, but does make the java environment available to the Mojo scoring application.
