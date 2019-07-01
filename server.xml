@@ -1,0 +1,9 @@
+    <server>
+        <featureManager>
+            <feature>jsp-2.3</feature>
+        </featureManager>
+
+        <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="8080" />
+
+        <application name="myMojo" context-root="/" type="war" location="myMojo.war"/>
+    </server>
