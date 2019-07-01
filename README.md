@@ -35,6 +35,7 @@ Once logged in and targetted, you should be able to "push" the package to the cl
 ```
 ibmcloud cf push << your-app-name-here >> -m 512m -p . -c "wlp/usr/servers/defaultServer/h2o_startup.sh"
 ```
+*Note:* if you are using IBM Cloud with a Lite account, your maximum available runtime memory is 256MB; try changing the `-m 512m` for `-m 256m` if you get a memory size error when running the _push_ command.
 
 The output from this command will include the hostname where your application is running:
 
