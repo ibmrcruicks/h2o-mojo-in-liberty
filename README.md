@@ -47,3 +47,10 @@ Note that the scoring times can be wildly unpredictable, as the Cloud Foundry ru
 The cloud foundry buildpack process makes extensive use of Ruby, regardless of the actual runtime -- the libraries installed are sufficient to support a simple CGI server.
 
 The _server.xml_ is used to trick the runtime setup into using the Liberty environment rather than a Ruby environment; the process doesn't actually create a Liberty server application, but does make the java environment available to the Mojo scoring application.
+
+# Notes/caveats
+
+The `/h2o_mojo.cgi` does not check whether the list of features/values submitted are sufficient or correct for the scoring to work. 
+The complete list of feature names is available through '/h2o_features.cgi` and a sample dataset from `/example.csv`.
+
+The "push" command sets a runtime memory limit of 512MB; if this is unsufficient for your model to run, the application with trap and exit with a completion code of 137 -- you will need to increase the memory allocated to the application.
