@@ -17,6 +17,13 @@ Make sure you have the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=clou
 
 Open a terminal window, and navigate to the directory where all the files have been placed.
 
+Mark the scripts as executable
+```
+ chmod +x *.cgi
+ chmod +x *.sh
+ chmod +x *.rb
+```
+
 Logon to [IBM Cloud](https://cloud.ibm.com) and select the cloud foundry space where you want to deploy the mojo demo.
 ```
 ibmcloud login
@@ -40,7 +47,7 @@ To run as a scoring service, POST `/h2o_mojo.cgi` form (or equivalent body) with
 
 Note that the scoring times can be wildly unpredictable, as the Cloud Foundry runtime services are prioritised for interactive- over CPU-intensive workloads.
 
-`YMMV`
+`YMMV/TANSTAAFL`
 
 # What's happening?
 
@@ -49,8 +56,11 @@ The cloud foundry buildpack process makes extensive use of Ruby, regardless of t
 The _server.xml_ is used to trick the runtime setup into using the Liberty environment rather than a Ruby environment; the process doesn't actually create a Liberty server application, but does make the java environment available to the Mojo scoring application.
 
 # Notes/caveats
+The download mechanism prevents the security settings for the shell and CGI scripts being consistent - you will need to remember to ensure they are executable before pushiinig to IBM Cloud.
 
 The `/h2o_mojo.cgi` does not check whether the list of features/values submitted are sufficient or correct for the scoring to work. 
 The complete list of feature names is available through `/h2o_features.cgi` and a sample dataset from `/example.csv`.
 
 The "push" command sets a runtime memory limit of 512MB; if this is unsufficient for your model to run, the application with trap and exit with a completion code of 137 -- you will need to increase the memory allocated to the application.
+
+By increasing memory allocation, you may incur higher charges ...
