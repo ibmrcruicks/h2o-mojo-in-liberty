@@ -1,5 +1,9 @@
 # Running MOJO pipeline in Liberty java runtime
+This project assume you have an [H2O.AI Driverless AI](https://www.h2o.ai/products/h2o-driverless-ai/) trial or production installation, and have built and tested a model, with a view to deploying as a scoring service.
 
+![Driverless AI deployment](https://www.h2o.ai/wp-content/uploads/2019/06/DAI-Architecture.png)
+
+## Preparation
 After exporting an H2O.ai Driverless AI pipeline as a _mojo_ package, you will have a set of files
 + README.txt
 + pipeline.mojo
@@ -13,8 +17,6 @@ You will need to create a _license.sig_ file with your key to allow the pipeline
 
 Downloads/clone the files from this repository into the same directory as the mojo export.
 
-Make sure you have the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) installed.
-
 Open a terminal window, and navigate to the directory where all the files have been placed.
 
 Mark the scripts as executable
@@ -23,6 +25,15 @@ Mark the scripts as executable
  chmod +x *.sh
  chmod +x *.rb
 ```
+
+## Deploy to IBM Cloud
+
+Now you have the option to deploy the MOJO scoring service into a Cloud Foundry runtime service using the IBM Cloud.
+
+This provides a quick and easy mechanism to test the scoring service, without having to invest time and effort to define and build an image and deploy into a Dokcer or Kubernetes runtime.
+
+
+Make sure you have the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) installed.
 
 Logon to [IBM Cloud](https://cloud.ibm.com) and select the cloud foundry space where you want to deploy the mojo demo.
 ```
