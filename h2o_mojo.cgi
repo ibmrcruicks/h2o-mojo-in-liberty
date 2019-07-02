@@ -3,6 +3,15 @@ require 'tempfile'
 require 'cgi'
 cgi = CGI.new
 
+if(cgi.request_method == 'GET')
+  result=`./h2o_form_gen.sh`
+  print "Content-type: text.html\n\n"
+  print "<html><body>"
+  print result
+  print "</body></html>"
+  exit
+end
+
 first = true
 keys =""
 vals=""
