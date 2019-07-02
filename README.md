@@ -47,6 +47,8 @@ To run the scoring example, run the `/h2o_run_example.cgi`.
 
 To run as a scoring service, POST `/h2o_mojo.cgi` form (or equivalent body) with all the feature/value pairs needed for your model.
 
+Run a GET for `/h2o_mojo.cgi` to auto-generate a form, prepopulated with sample data - submitting this form will POST data into the scoring service.
+
 Note that the scoring times can be wildly unpredictable, as the Cloud Foundry runtime services are prioritised for interactive- over CPU-intensive workloads.
 
 *Note:* once you have run the scoring, or demo, remember to shutdown the application, or it will consume your runtime memory allocation unnecessarily.
