@@ -30,7 +30,7 @@ Mark the scripts as executable
 
 Now you have the option to deploy the MOJO scoring service into a Cloud Foundry runtime service using the IBM Cloud.
 
-This provides a quick and easy mechanism to test the scoring service, without having to invest time and effort to define and build an image and deploy into a Dokcer or Kubernetes runtime.
+This provides a quick and easy mechanism to test the scoring service, without having to invest time and effort to define and build an image and deploy into a Docker or Kubernetes runtime. (If you would like to try that option, see [cf docker](/docker/README.md) - note that an alternative http server will be needed as there is no native Ruby support if using the standard [websphere liberty docker image](https://hub.docker.com/_/websphere-liberty/))
 
 
 Make sure you have the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started) installed.
