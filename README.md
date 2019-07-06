@@ -81,3 +81,7 @@ The complete list of feature names is available through `/h2o_features.cgi` and 
 The "push" command sets a runtime memory limit of 512MB; if this is unsufficient for your model to run, the application with trap and exit with a completion code of 137 -- you will need to increase the memory allocated to the application.
 
 By increasing memory allocation, you may incur higher charges ...
+
+# Handy links
+
+https://jjasghar.github.io/blog/2019/03/07/using-docker-and-the-ibmcloud-together/
